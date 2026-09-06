@@ -2,7 +2,7 @@
 set -eu
 
 GKI_ROOT=$(pwd)
-KITTISU_REPOSITORY=${KITTISU_REPOSITORY:-https://github.com/terebiko/KittiSU}
+KITTISU_REPOSITORY=${KITTISU_REPOSITORY:-https://github.com/tungtx57-pixel/KittiSU-Bomb}
 
 display_usage() {
 	echo "Usage: $0 [--cleanup | <commit-or-tag>]"
@@ -48,11 +48,11 @@ setup_kernelsu() {
 	cd "$GKI_ROOT/KernelSU"
 	git stash && echo "[-] Stashed current changes."
 	if [ "$(git status | grep -Po 'v\d+(\.\d+)*' | head -n1)" ]; then
-		git checkout main && echo "[-] Switched to main branch."
+		git checkout dev && echo "[-] Switched to dev branch."
 	fi
 	git pull && echo "[+] Repository updated."
 	if [ -z "${1-}" ]; then
-		git checkout main && echo "[-] Checked out main branch."
+		git checkout dev && echo "[-] Checked out dev branch."
 	else
 		git checkout "$1" && echo "[-] Checked out $1." || echo "[-] Checkout default branch"
 	fi
