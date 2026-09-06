@@ -76,7 +76,7 @@ fun createRootShell(globalMnt: Boolean = false): Shell {
     val builder = Shell.Builder.create()
     return try {
         if (globalMnt) {
-            builder.build(getKsuDaemonPath(), "debug", "su", "-g")
+            builder.build(getKsuDaemonPath(), "debug", "su", "-M")
         } else {
             builder.build(getKsuDaemonPath(), "debug", "su")
         }
@@ -84,7 +84,7 @@ fun createRootShell(globalMnt: Boolean = false): Shell {
         Log.w(TAG, "ksu failed: ", e)
         try {
             if (globalMnt) {
-                builder.build("su", "-mm")
+                builder.build("su", "-M")
             } else {
                 builder.build("su")
             }
